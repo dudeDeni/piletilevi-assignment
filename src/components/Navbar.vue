@@ -1,0 +1,32 @@
+<script setup lang="ts">
+import logo from "@/assets/logo.svg";
+
+const navigation = [
+  { name: 'Back office', href: '#', current: true },
+  { name: 'Back office', href: '#', current: false },
+  { name: 'Reports', href: '#', current: false },
+  { name: 'Help', href: '#', current: false },
+]
+</script>
+
+<template>
+  <div class="fixed w-full text-gray-700 bg-white">
+    <div class="flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+      <div class="flex flex-row items-center justify-between p-4">
+        <a href="#" class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
+          <img :src="logo" alt="Logo" />
+        </a>
+      </div>
+      <nav class="flex-col gap-4 flex-grow hidden ml-10 pb-4 md:pb-0 md:flex md:flex-row">
+        <template v-for="item in navigation" :key="item.name">
+          <!-- add router-link here -->
+            <button @click="navigate" class="">
+              <div class="">
+                {{ item.name }}
+              </div>
+            </button>
+        </template>
+      </nav>
+    </div>
+  </div>
+</template>
