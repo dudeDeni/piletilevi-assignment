@@ -9,7 +9,8 @@ interface DiscountStore {
   filterName: string,
   sortCategory: string,
   activeStep: number,
-  itemsPerPage: number
+  itemsPerPage: number,
+  totalPages: number,
 }
 
 export const useStore = defineStore('discount', {
@@ -19,7 +20,8 @@ export const useStore = defineStore('discount', {
     filterName: '',
     sortCategory: '',
     activeStep: 1,
-    itemsPerPage: 10
+    itemsPerPage: 10,
+    totalPages: 1
   }),
 
   actions: {
@@ -28,12 +30,12 @@ export const useStore = defineStore('discount', {
     },
 
     async dispatchGetDiscounts(): Promise<ApiResponse<Discount[] | null>> {
-
+      // using LocalStorage just to save list
+      // in actual case need to check for server updates and update LocalStorage
       try {
         const storedContent = localStorage.getItem('storedContent');
 
         if (storedContent) {
-          console.log(storedContent)
           const data = JSON.parse(storedContent)
           this.discounts = data
 
@@ -76,13 +78,18 @@ export const useStore = defineStore('discount', {
   },
 
   getters: {
+    countPages: (state) => {
+      state.totalPages = Math.ceil(state.discounts.length / state.itemsPerPage)
+      return state.totalPages
+    },
+
     filteredDiscounts: (state) => {
+      state.activeStep =1
       return state.discounts.filter(discount => {
         const nameMatch = discount.name.toLowerCase().includes(state.filterName.toLowerCase())
         const categoryMatch = nameMatch && state.sortCategory === '' ? discount : discount.category === state.sortCategory
         return nameMatch && categoryMatch
       })
-
     }
   }
 })
