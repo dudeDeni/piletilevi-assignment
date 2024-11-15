@@ -3,11 +3,12 @@ import { ref, onMounted, computed } from 'vue'
 import FilterInput from "@/components/FilterInput.vue";
 import SortSelect from "@/components/SortSelect.vue";
 import ListPagination from "@/components/ListPagination.vue";
+import ModalCreate from "@/components/ModalCreate.vue";
 
 const store = useStore()
 const discounts = computed(() => store.filteredDiscounts)
 const countPages = computed(() => store.countPages)
-
+const modalState = ref(false)
 
 const clearSearch = () => {
   store.filterName = ''
@@ -31,8 +32,9 @@ onMounted(async () => {
   <div>
     <div class="flex justify-between mb-3" >
       <div class="text-5xl font-bold" >Discounts</div>
-      <button class="text-white font-semibold uppercase bg-indigo-950 rounded-md px-4 text-sm">create new discount </button>
+      <button @click="store.toggleModal()" class="text-white font-semibold uppercase bg-indigo-950 rounded-md px-4 text-sm">create new discount </button>
     </div>
+    <ModalCreate :is-open="store.isModalOpen"/>
     <div class="w-3/5 flex gap-3">
       <FilterInput />
       <SortSelect />

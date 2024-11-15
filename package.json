@@ -14,6 +14,7 @@
     "vue": "^3.5.12"
   },
   "devDependencies": {
+    "@headlessui/vue": "^1.7.23",
     "@types/node": "^22.9.0",
     "@vitejs/plugin-vue": "^5.1.4",
     "autoprefixer": "^10.4.20",

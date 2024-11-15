@@ -11,6 +11,7 @@ interface DiscountStore {
   activeStep: number,
   itemsPerPage: number,
   totalPages: number,
+  isModalOpen: boolean,
 }
 
 export const useStore = defineStore('discount', {
@@ -21,12 +22,17 @@ export const useStore = defineStore('discount', {
     sortCategory: '',
     activeStep: 1,
     itemsPerPage: 10,
-    totalPages: 1
+    totalPages: 1,
+    isModalOpen: false
   }),
 
   actions: {
     initApp() {
       this.isInitialized = true
+    },
+
+    toggleModal() {
+      this.isModalOpen = !this.isModalOpen
     },
 
     async dispatchGetDiscounts(): Promise<ApiResponse<Discount[] | null>> {
