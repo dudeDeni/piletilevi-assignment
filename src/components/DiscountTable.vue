@@ -7,10 +7,19 @@ import ModalCreate from "@/components/ModalCreate.vue";
 const store = useStore()
 const discounts = computed(() => store.filteredDiscounts)
 const modalState = ref(false)
+const input = ref('')
+const select = ref('')
 
 const clearSearch = () => {
   store.filterName = ''
   store.sortCategory = ''
+  input.value = ''
+  select.value = ''
+}
+
+const submitSearch = () => {
+  store.filterName = input.value
+  store.sortCategory = select.value
 }
 
 const paginatedList = computed(() => {
@@ -37,11 +46,17 @@ onMounted(async () => {
       <button @click="store.toggleModal()" class="text-white font-semibold uppercase bg-indigo-950 rounded-md px-4 text-sm">create new discount </button>
     </div>
     <ModalCreate :is-open="store.isModalOpen"/>
-    <div class="w-3/5 flex gap-3 h-10">
-      <FilterInput :id="'tableFilter'"/>
-      <SortSelect :id="'tableSort'"/>
-      <button class="h-full rounded-md px-4 border-2 border-indigo-900 uppercase text-sm">Search</button>
-      <button class="font-medium text-sm text-gray-600" @click="clearSearch">Clear All</button>
+    <div class="w-3/5 flex flex-col md:flex-row gap-3 md:h-10">
+      <FilterInput :id="'tableFilter'" :input-val="input" @submit="(e) => input = e"/>
+      <SortSelect :id="'tableSort'" :select-val="select" @submit="(e) => select = e"/>
+      <button 
+        type="button" 
+        class="h-full rounded-md px-4 border-2 border-indigo-900 uppercase text-sm"
+        @click="submitSearch"
+      >
+        Search  
+      </button>
+      <button type="button" class="font-medium text-sm text-gray-600" @click="clearSearch">Clear All</button>
     </div>
     <!-- TODO: add loading animation -->
     <div v-if="paginatedList.length > 0" class="flex bg-white mt-4 p-6 rounded-md shadow-lg">

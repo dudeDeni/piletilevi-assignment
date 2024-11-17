@@ -13,7 +13,7 @@ const navigation = [
   <div class="fixed w-full text-gray-700 bg-white z-10">
     <div class="flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
       <div class="flex flex-row items-center justify-between p-4">
-        <a href="#" class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
+        <a href="#">
           <img :src="logo" alt="Logo" />
         </a>
       </div>
