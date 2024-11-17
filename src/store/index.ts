@@ -35,6 +35,10 @@ export const useStore = defineStore('discount', {
       this.isModalOpen = !this.isModalOpen
     },
 
+    goToListPage(page: number) {
+      this.activeStep = page
+    },
+
     async dispatchGetDiscounts(): Promise<ApiResponse<Discount[] | null>> {
       // using LocalStorage just to save list
       // in actual case need to check for server updates and update LocalStorage
@@ -90,7 +94,7 @@ export const useStore = defineStore('discount', {
     },
 
     filteredDiscounts: (state) => {
-      state.activeStep =1
+      state.activeStep = 1
       return state.discounts.filter(discount => {
         const nameMatch = discount.name.toLowerCase().includes(state.filterName.toLowerCase())
         const categoryMatch = nameMatch && state.sortCategory === '' ? discount : discount.category === state.sortCategory

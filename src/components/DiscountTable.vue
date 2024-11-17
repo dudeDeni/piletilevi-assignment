@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
 import FilterInput from "@/components/FilterInput.vue";
 import SortSelect from "@/components/SortSelect.vue";
 import ListPagination from "@/components/ListPagination.vue";
@@ -18,6 +17,7 @@ const clearSearch = () => {
 const paginatedList = computed(() => {
   const start = (store.activeStep -1) * store.itemsPerPage
   const end = start + store.itemsPerPage
+  
   return discounts.value.slice(start, end)
 })
 
@@ -35,14 +35,14 @@ onMounted(async () => {
       <button @click="store.toggleModal()" class="text-white font-semibold uppercase bg-indigo-950 rounded-md px-4 text-sm">create new discount </button>
     </div>
     <ModalCreate :is-open="store.isModalOpen"/>
-    <div class="w-3/5 flex gap-3">
+    <div class="w-3/5 flex gap-3 h-10">
       <FilterInput />
       <SortSelect />
-      <button class="rounded-md px-4 border-2 border-indigo-900 uppercase text-sm my-0.5">Search</button>
+      <button class="h-full rounded-md px-4 border-2 border-indigo-900 uppercase text-sm">Search</button>
       <button class="font-medium text-sm text-gray-600" @click="clearSearch">Clear All</button>
     </div>
     <!-- TODO: add loading animation -->
-    <div v-if="discounts" class="flex bg-white mt-4 p-6 rounded-md shadow-lg">
+    <div v-if="paginatedList.length > 0" class="flex bg-white mt-4 p-6 rounded-md shadow-lg">
       <table class="w-full text-black">
         <thead>
           <tr>
@@ -63,6 +63,9 @@ onMounted(async () => {
           </tr>
         </tbody>
       </table>
+    </div>
+    <div v-else>
+      <h1 class="mt-4 p-6" >No results</h1>
     </div>
      <!-- Pagination Controls -->
     <ListPagination v-if="countPages && store.activeStep >= 1"/>
