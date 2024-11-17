@@ -1,6 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import arrowLeft from '@/assets/arrow_left.svg'
 import arrowRight from '@/assets/arrow_right.svg'
+
+const props = defineProps<{
+  pages: number,
+}>();
+defineExpose(props)
 
 const store = useStore()
 
@@ -9,7 +14,7 @@ const prevPage = () => {
 }
 
 const nextPage = () => {
-  if (store.activeStep < store.totalPages) store.activeStep++
+  if (store.activeStep < props.pages) store.activeStep++
 }
 
 </script>
@@ -22,7 +27,7 @@ const nextPage = () => {
             <span class="sr-only">Previous</span>
             <img :src="arrowLeft">
           </div>
-          <div v-for="page in store.totalPages" class="">
+          <div v-for="page in props.pages" class="">
             <div @click="store.goToListPage(page)" :class="store.activeStep == page ? 'border-b-2 border-gray-600 mx-3 px-1' : 'mx-3 px-1 text-indigo-600 cursor-pointer'">{{ page }}</div>
           </div>
           <div @click="nextPage" class="relative px-2 py-1 font-bold text-grey-900 inline-flex items-center rounded-md text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 cursor-pointer">

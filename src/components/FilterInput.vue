@@ -2,6 +2,11 @@
 import cross from '@/assets/cross.svg'
 import search from '@/assets/search.svg'
 
+const props = defineProps<{
+  id: string,
+}>();
+defineExpose(props)
+
 const store = useStore()
 
 const clearSearch = () => {
@@ -12,7 +17,7 @@ const clearSearch = () => {
 
 <template>
   <div class="relative rounded-md flex items-center">
-    <input type="text" name="filter" id="filter"
+    <input type="text" name="filter" :id="props.id"
       class="h-full rounded-md border-2 border-gray-200 pl-4 pr-32 text-gray-900 placeholder:text-gray-400 sm:text-sm/6"
       placeholder="Discount name, code" v-model="store.filterName">
     <button class="absolute right-10 pr-1" @click="clearSearch">

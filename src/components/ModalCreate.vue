@@ -35,12 +35,12 @@ const store = useStore()
                     <img :src="cross" />
                   </button>
                 </div>
-                <input type="text" name="filter" id="filter"
+                <input type="text" name="title" id="title"
                   class="w-full h-10 rounded-md border-2 border-gray-200 py-2 pl-4 pr-32 text-gray-900 placeholder:text-gray-400 sm:text-sm/6"
                   placeholder="Discount name"
                 >
                 <div class="flex mt-4 mb-6 gap-4">
-                  <SortSelect />
+                  <SortSelect :id="'modalSelect'"/>
                   <button type="button"
                     class="rounded-md px-3 py-2.5 text-sm uppercase bg-indigo-900 font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-indigo-500 sm:w-auto"
                     ref="addButtonRef"

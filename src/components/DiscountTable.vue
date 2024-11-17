@@ -6,7 +6,6 @@ import ModalCreate from "@/components/ModalCreate.vue";
 
 const store = useStore()
 const discounts = computed(() => store.filteredDiscounts)
-const countPages = computed(() => store.countPages)
 const modalState = ref(false)
 
 const clearSearch = () => {
@@ -17,8 +16,11 @@ const clearSearch = () => {
 const paginatedList = computed(() => {
   const start = (store.activeStep -1) * store.itemsPerPage
   const end = start + store.itemsPerPage
-  
   return discounts.value.slice(start, end)
+})
+
+const countPages = computed(() => {
+  return Math.ceil(discounts.value.length / store.itemsPerPage)
 })
 
 
@@ -36,8 +38,8 @@ onMounted(async () => {
     </div>
     <ModalCreate :is-open="store.isModalOpen"/>
     <div class="w-3/5 flex gap-3 h-10">
-      <FilterInput />
-      <SortSelect />
+      <FilterInput :id="'tableFilter'"/>
+      <SortSelect :id="'tableSort'"/>
       <button class="h-full rounded-md px-4 border-2 border-indigo-900 uppercase text-sm">Search</button>
       <button class="font-medium text-sm text-gray-600" @click="clearSearch">Clear All</button>
     </div>
@@ -68,7 +70,10 @@ onMounted(async () => {
       <h1 class="mt-4 p-6" >No results</h1>
     </div>
      <!-- Pagination Controls -->
-    <ListPagination v-if="countPages && store.activeStep >= 1"/>
+    <ListPagination 
+      v-if="countPages > 1"
+      :pages="countPages"
+    />
   </div>
 </template>
 

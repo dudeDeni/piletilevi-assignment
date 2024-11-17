@@ -10,7 +10,6 @@ interface DiscountStore {
   sortCategory: string,
   activeStep: number,
   itemsPerPage: number,
-  totalPages: number,
   isModalOpen: boolean,
 }
 
@@ -22,7 +21,6 @@ export const useStore = defineStore('discount', {
     sortCategory: '',
     activeStep: 1,
     itemsPerPage: 10,
-    totalPages: 1,
     isModalOpen: false
   }),
 
@@ -88,11 +86,6 @@ export const useStore = defineStore('discount', {
   },
 
   getters: {
-    countPages: (state) => {
-      state.totalPages = Math.ceil(state.discounts.length / state.itemsPerPage)
-      return state.totalPages
-    },
-
     filteredDiscounts: (state) => {
       state.activeStep = 1
       return state.discounts.filter(discount => {
