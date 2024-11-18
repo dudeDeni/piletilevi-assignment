@@ -14,8 +14,14 @@ const emit = defineEmits<{
 
 const store = useStore()
 
+const validateInput = (input: string) => {
+  // Allow only letters and numbers
+  return input.replace(/[^a-zA-Z0-9]/g, '');
+};
+
 const submitInput = (event: Event) => {
-  const payload = (event.target as HTMLInputElement).value
+  const input = (event.target as HTMLInputElement).value
+  const payload = validateInput(input)
   emit('submit', payload)
 }
 

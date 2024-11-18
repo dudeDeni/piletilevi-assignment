@@ -3,7 +3,8 @@ import arrow from '@/assets/arrow_down.svg'
 import check from '@/assets/check.svg'
 
 const props = defineProps<{
-  modelValue: string
+  modelValue?: string
+  disabled?: boolean
 }>();
 defineExpose(props)
 
@@ -37,6 +38,7 @@ const selectOption = (option: { value: string; label: string }) => {
   <div class="relative flex-grow rounded-md border border-gray-200 font-normal sm:text-sm">
     <!-- Selected Item -->
     <button 
+      :disabled="props.disabled"
       @click="toggleDropdown"
       class="w-full h-full px-4 rounded-md bg-white text-left text-gray-400 flex justify-between items-center"
     >

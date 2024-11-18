@@ -40,7 +40,7 @@ const store = useStore()
                   placeholder="Discount name"
                 >
                 <div class="flex mt-4 mb-6 gap-4">
-                  <SortSelect :id="'modalSelect'"/>
+                  <SortSelect :disabled="true" />
                   <button type="button"
                     class="rounded-md px-3 py-2.5 text-sm uppercase bg-purple font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-indigo-500 sm:w-auto"
                     ref="addButtonRef"
