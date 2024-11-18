@@ -1,5 +1,5 @@
 import { api } from '@/services'
-import type { ApiResponse, Discount } from '@/services/types'
+import { DiscountTabs, type ApiResponse, type Discount } from '@/services/types'
 import type { AxiosError } from 'axios'
 import { defineStore } from 'pinia'
 
@@ -9,6 +9,7 @@ interface DiscountStore {
   filterName: string,
   sortCategory: string,
   activeStep: number,
+  activeTab: string,
   itemsPerPage: number,
   isModalOpen: boolean,
 }
@@ -20,6 +21,7 @@ export const useStore = defineStore('discount', {
     filterName: '',
     sortCategory: '',
     activeStep: 1,
+    activeTab: DiscountTabs.CURRENT,
     itemsPerPage: 10,
     isModalOpen: false
   }),
@@ -86,6 +88,7 @@ export const useStore = defineStore('discount', {
   },
 
   getters: {
+
     filteredDiscounts: (state) => {
       state.activeStep = 1
       return state.discounts.filter(discount => {
@@ -93,6 +96,12 @@ export const useStore = defineStore('discount', {
         const categoryMatch = nameMatch && state.sortCategory === '' ? discount : discount.category === state.sortCategory
         return nameMatch && categoryMatch
       })
+    },
+
+    getUpcomingDiscounts: (state) => {
+      const today = new Date() // Current date and time
+      const convertToday = today.toISOString().split('T')[0]; // Convert to "YYYY-MM-DD"
+      return state.discounts.filter(discount => discount.startDate >= convertToday)
     }
   }
 })

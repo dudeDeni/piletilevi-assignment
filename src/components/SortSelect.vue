@@ -27,7 +27,7 @@ const submitSelect = (event: Event) => {
 </script>
 
 <template>
-  <select :id="props.id" :value="props.selectVal" @change="submitSelect" class="flex-grow rounded-md border-2 border-gray-200 text-gray-400 sm:text-sm/6 pl-4">
+  <select :id="props.id" :value="props.selectVal" @change="submitSelect" class="flex-grow rounded-md border border-gray-200 text-gray-400 font-normal sm:text-sm/6 pl-4">
     <!-- Placeholder option -->
     <option class="text-gray-400" value="" disabled selected hidden>Applies to</option>
     <option v-for="option in options" :key="option.value" :value="option.value">

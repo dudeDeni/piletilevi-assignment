@@ -1,12 +1,8 @@
 <template>
   <div>
-    <header>
-      <!-- Header content goes here -->
-    </header>
-
     <Navbar />
 
-    <main class="mx-48 pt-20">
+    <main class="mx-48 pt-24 mb-24">
       <slot></slot>
     </main>
 

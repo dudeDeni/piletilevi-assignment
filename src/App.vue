@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Layout from '@/components/Layout.vue'
-import DiscountTable from '@/components/DiscountTable.vue'
+import DiscountTable from '@/components/discount/DiscountTable.vue'
 
 </script>
 

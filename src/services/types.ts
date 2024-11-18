@@ -12,3 +12,9 @@ export type Discount = {
   discountAmount: number;
   category: string;
 };
+
+export enum DiscountTabs {
+  CURRENT = 'current',
+  UPCOMING = 'upcoming',
+  ARCHIVED = 'archived'
+}

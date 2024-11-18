@@ -30,19 +30,19 @@ const store = useStore()
               class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
               <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div class="sm:flex sm:items-center justify-between mb-6">
-                  <DialogTitle as="h3" class="text-2xl font-semibold text-gray-900">Create discount</DialogTitle>
+                  <DialogTitle as="h3" class="text-3xl font-semibold text-gray-900">Create discount</DialogTitle>
                   <button type="button" @click="store.toggleModal">
                     <img :src="cross" />
                   </button>
                 </div>
                 <input type="text" name="title" id="title"
-                  class="w-full h-10 rounded-md border-2 border-gray-200 py-2 pl-4 pr-32 text-gray-900 placeholder:text-gray-400 sm:text-sm/6"
+                  class="w-full h-10 rounded-md border-2 border-gray-200 py-2 pl-4 pr-32 text-gray-900 font-normal placeholder:text-gray-400 sm:text-sm/6"
                   placeholder="Discount name"
                 >
                 <div class="flex mt-4 mb-6 gap-4">
                   <SortSelect :id="'modalSelect'"/>
                   <button type="button"
-                    class="rounded-md px-3 py-2.5 text-sm uppercase bg-indigo-900 font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-indigo-500 sm:w-auto"
+                    class="rounded-md px-3 py-2.5 text-sm uppercase bg-purple font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-indigo-500 sm:w-auto"
                     ref="addButtonRef"
                   >
                     add
