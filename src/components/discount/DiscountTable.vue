@@ -61,7 +61,7 @@ onMounted(async () => {
     <ModalCreate :is-open="store.isModalOpen"/>
     <div class="w-3/5 flex flex-col md:flex-row gap-3 md:h-10">
       <FilterInput :id="'tableFilter'" :input-val="input" @submit="(e) => input = e"/>
-      <SortSelect :id="'tableSort'" :select-val="select" @submit="(e) => select = e"/>
+      <SortSelect :id="'tableSort'" v-model="select"/>
       <button 
         type="button" 
         class="h-full rounded-md px-4 border-2 border-purple uppercase text-sm text-purple"

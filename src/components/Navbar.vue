@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import logo from "@/assets/logo.svg";
+import arrow from "@/assets/arrow_down.svg";
 
 const navigation = [
   { name: 'Back office', href: 'office1', current: true },
@@ -7,10 +8,20 @@ const navigation = [
   { name: 'Reports', href: 'reports', current: false },
   { name: 'Help', href: 'help', current: false },
 ]
+
+const options = [
+  { key: 'EN', value: 'EN'},
+  { key: 'EN', value: 'EN'},
+  { key: 'EN', value: 'EN'},
+]
+
+const selectedOption = ref('EN')
+const name = ref('Name Surname')
+const organization = ref('Noorsooteater')
 </script>
 
 <template>
-  <div class="navbar-shadow fixed w-full text-gray-700 bg-white z-10">
+  <div class="navbar-shadow fixed w-full text-gray-700 bg-white z-20">
     <div class="flex flex-col h-[80px] px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
       <div class="flex flex-row items-center p-4">
         <a href="#">
@@ -30,6 +41,28 @@ const navigation = [
           </button>
         </template>
       </nav>
+
+      <div class="flex gap-4">
+        <div>
+          <select id="language" class="w-10 text-gray-900 font-semibold " :value="selectedOption">
+            <option class="text-gray-400" value="" disabled selected hidden>Applies to</option>
+            <option v-for="(option, index) in options" :key="index"  :value="option.value">
+              {{ option.key }}
+            </option>
+          </select>
+        </div>
+
+        <div class="font-normal">
+          {{ name }}
+        </div>
+
+        <div class="flex items-center gap-2 text-gray-900 font-semibold border-l-2 border-text-gray-400 pl-4">
+          {{ organization }}
+          <div>
+            <img :src="arrow" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

@@ -9,5 +9,3 @@ import DiscountTable from '@/components/discount/DiscountTable.vue'
     <DiscountTable />
   </Layout>
 </template>
-
-<style scoped></style>
